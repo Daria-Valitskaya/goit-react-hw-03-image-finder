@@ -1,17 +1,52 @@
-<header className="Searchbar">
-  <form className="SearchForm">
-    <button type="submit" className="SearchForm-button">
-      <span className="SearchForm-button-label">Search</span>
-    </button>
+import PropTypes from "prop-types";
+import { Component } from "react";
 
-    <input
-      className="SearchForm-input"
-      type="text"
-      autocomplete="off"
-      autofocus
-      placeholder="Search images and photos"
-    />
-  </form>
-</header>;
+export default class Searchbar extends Component {
+  state = {
+    imageName: "",
+  };
+  onInputChange = (event) => {
+    this.setState({ imageName: event.currentTarget.value.toLowerCase() });
+  };
 
-// Компонент принимает один проп onSubmit
+  handleSubmit = (event) => {
+    event.preventDefault();
+    if (this.state.imageName.trim() === "") {
+      alert("Please, enter smthk");
+      return;
+    }
+    this.props.onSubmit(this.state.imageName);
+    this.reset();
+  };
+
+  reset = () => {
+    this.setState({ imageName: "" });
+  };
+
+  render() {
+    return (
+      <header className="Searchbar">
+        <form className="SearchForm" onSubmit={this.handleSubmit}>
+          <button type="submit" className="SearchForm-button">
+            <span className="SearchForm-button-label">Search</span>
+          </button>
+
+          <input
+            className="SearchForm-input"
+            type="text"
+            autoComplete="off"
+            autoFocus
+            placeholder="Search images and photos"
+            value={this.state.imageName}
+            onChange={this.onInputChange}
+          />
+        </form>
+      </header>
+    );
+  }
+}
+
+Searchbar.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+  state: PropTypes.object.isRequired,
+};
