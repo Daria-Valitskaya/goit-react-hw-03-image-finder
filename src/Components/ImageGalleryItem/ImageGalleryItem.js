@@ -1,13 +1,7 @@
 import PropTypes from "prop-types";
 
-export default function ImageGalleryItem({
-  id,
-  webformatURL,
-  tags,
-  largeImageURL,
-  onClick,
-}) {
-  // const { id, webformatURL, tags, largeImageURL } = image;
+export default function ImageGalleryItem({ image, onClick }) {
+  const { id, webformatURL, tags, largeImageURL } = image;
   return (
     <li className="ImageGalleryItem" key={id} onClick={onClick}>
       <img
@@ -20,10 +14,10 @@ export default function ImageGalleryItem({
   );
 }
 ImageGalleryItem.propTypes = {
-  // image: PropTypes.shape({
-  id: PropTypes.number.isRequired,
-  webformatURL: PropTypes.string.isRequired,
-  tags: PropTypes.string.isRequired,
-  largeImageURL: PropTypes.string.isRequired,
-  // }),
+  image: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    webformatURL: PropTypes.string.isRequired,
+    tags: PropTypes.string.isRequired,
+    largeImageURL: PropTypes.string.isRequired,
+  }),
 };
