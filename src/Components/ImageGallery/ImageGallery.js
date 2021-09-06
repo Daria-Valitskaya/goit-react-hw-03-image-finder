@@ -1,16 +1,12 @@
 import PropTypes from "prop-types";
 
 import ImageGalleryItem from "../ImageGalleryItem/ImageGalleryItem";
-export default function ImageGallery({ images, onOpenModal }) {
+export default function ImageGallery({ images, onClick }) {
   return (
     <ul className="ImageGallery">
       {images.map((image) => {
         return (
-          <ImageGalleryItem
-            key={image.id}
-            onClick={onOpenModal}
-            image={image}
-          />
+          <ImageGalleryItem key={image.id} onClick={onClick} image={image} />
         );
       })}
     </ul>
@@ -26,5 +22,5 @@ ImageGallery.propTypes = {
       largeImageURL: PropTypes.string.isRequired,
     })
   ),
-  onOpenModal: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
