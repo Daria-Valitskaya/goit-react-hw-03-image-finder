@@ -13,6 +13,7 @@ export default class Searchbar extends Component {
     event.preventDefault();
     if (this.state.imageName.trim() === "") {
       alert("Please, enter smthk");
+      this.reset();
       return;
     }
     this.props.onSubmit(this.state.imageName);
